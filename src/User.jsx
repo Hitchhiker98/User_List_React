@@ -1,3 +1,3 @@
 export function User({ name }) {
-    return <li>{name}</li>
-  }
+  return <li>{name}</li>;
+}

@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react"
-import { User } from "./User"
+import { useEffect, useState } from "react";
+import { User } from "./User";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [users, setUsers] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
-    const controller = new AbortController()
+    const controller = new AbortController();
     fetch("https://jsonplaceholder.typicode.com/users", {
       signal: controller.signal,
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(setUsers)
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
 
     return () => {
-      controller.abort()
-    }
-  }, [])
+      controller.abort();
+    };
+  }, []);
 
   return (
     <>
@@ -30,13 +30,13 @@ function App() {
         <h2>Loading...</h2>
       ) : (
         <ul>
-          {users.map(user => {
-            return <User key={user.id} name={user.name} />
+          {users.map((user) => {
+            return <User key={user.id} name={user.name} />;
           })}
         </ul>
       )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
